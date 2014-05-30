@@ -7,11 +7,11 @@
     </ul>
     <div class="main topics">
         <h2>Latest topics</h2>
-        {% render 'HerzultForumBundle:Topic:list' with {'categorySlug': null, 'pagerOptions': {'page': page}} %}
+        {% render(controller('HerzultForumBundle:Topic:list', {'categorySlug': null, 'pagerOptions': {'page': page}})) %}
     </div>
     <div class="side categories">
         <h2>Categories</h2>
-        {% render 'HerzultForumBundle:Category:list' %}
+        {% render(controller('HerzultForumBundle:Category:list')) %}
     </div>
 </div>
 {% endblock %}

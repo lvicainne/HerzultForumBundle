@@ -30,7 +30,7 @@ class TopicController extends Controller
     public function createAction(Category $category = null)
     {
         $form = $this->get('herzult_forum.form.new_topic');
-        $form->bindRequest($this->get('request'));
+        $form->bind($this->get('request'));
         $topic = $form->getData();
 
         if (!$form->isValid()) {
@@ -52,7 +52,7 @@ class TopicController extends Controller
         $objectManager->persist($topic->getFirstPost());
         $objectManager->flush();
 
-        $this->get('session')->setFlash('herzult_forum_topic_create/success', true);
+        $this->get('session')->getFlashBag()->set('success', 'herzult_forum_topic_create/success', true);
         $url = $this->get('herzult_forum.router.url_generator')->urlForTopic($topic);
 
         return new RedirectResponse($url);

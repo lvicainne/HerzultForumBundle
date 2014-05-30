@@ -35,7 +35,7 @@ class PostController extends Controller
         $form  = $this->get('herzult_forum.form.post');
         $post  = $this->get('herzult_forum.repository.post')->createNewPost();
         $post->setTopic($topic);
-        $form->bindRequest($this->get('request'));
+        $form->bind($this->get('request'));
 
         if (!$form->isValid()) {
             $template = sprintf('%s:new.html.%s', $this->container->getParameter('herzult_forum.templating.location.post'), $this->getRenderer());
@@ -54,7 +54,7 @@ class PostController extends Controller
         $objectManager->persist($post);
         $objectManager->flush();
 
-        $this->get('session')->setFlash('herzult_forum_post_create/success', true);
+		$this->get('session')->getFlashBag()->set('success', 'herzult_forum_post_create/success', true);
         $url = $this->get('herzult_forum.router.url_generator')->urlForPost($post);
 
         return new RedirectResponse($url);

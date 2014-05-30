@@ -8,7 +8,7 @@ class Search
 {
     /**
      * @Assert\NotBlank(),
-     * @Assert\MinLength(limit=3, message="Just a little too short.")
+     * @Assert\Length(min=3, minMessage="Just a little too short.")
      */
     protected $query;
 
