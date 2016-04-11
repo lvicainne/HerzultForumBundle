@@ -5,7 +5,6 @@ namespace Herzult\Bundle\ForumBundle\Model;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Herzult\Bundle\ForumBundle\Util\Inflector;
-use Gedmo\Sluggable\Util\Urlizer;
 use DateTime;
 
 abstract class Topic
@@ -64,7 +63,7 @@ abstract class Topic
     public function setSubject($subject)
     {
         $this->subject = $subject;
-        $this->setSlug(Urlizer::urlize($this->getSubject()));
+        $this->setSlug(Inflector::slugify($this->getSubject()));
     }
 
     /**
