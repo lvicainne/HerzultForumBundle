@@ -19,7 +19,7 @@ class ForumController extends Controller
     public function searchAction()
     {
         $search = new Search();
-        $form = $this->get('form.factory')->create(new SearchFormType(), $search);
+        $form = $this->get('form.factory')->create(new SearchFormType(), $search, array('csrf_protection' => false));
         $form->bind(array('query' => $this->get('request')->query->get('q')));
         $query = $form->getData()->getQuery();
 
